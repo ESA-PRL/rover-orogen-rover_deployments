@@ -29,10 +29,10 @@ using_task_library 'ptu_control'
 using_task_library 'viso2'
 using_task_library 'icp'
 using_task_library 'projection'
-using_task_library 'localization_frontend'
+#using_task_library 'localization_frontend'
 
 #HDRP Odometry
-using_task_library 'hdpr_odometry'
+#using_task_library 'hdpr_odometry'
 
 # General 3D Oodmetry
 using_task_library 'threed_odometry'
@@ -71,7 +71,7 @@ deployment "hdpr_perception" do
     task("pancam_right", "camera_firewire::CameraTask")
     task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
     task("colorize_pointcloud", "projection::ColorizePointcloud")
-    task("localization_frontend", "localization_frontend::Task")
+    #task("localization_frontend", "localization_frontend::Task")
 
     add_default_logger
 end
