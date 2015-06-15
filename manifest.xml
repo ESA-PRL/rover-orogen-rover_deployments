@@ -1,8 +1,8 @@
 <package>
-  <description brief="ExoTer deployments">
-  ExoTer rover default deployment set
+  <description brief="HDPR deployments">
+  HDPR rover default deployment set
   </description>
-  <author>Javier Hidalgo Carrio/javier.hidalgo-carrio@dfki.de, javier.hidalgo.carrio@esa.int</author>
+  <author>Javier Hidalgo Carrio/javier.hidalgo-carrio@dfki.de, martin.azkarate@esa.int</author>
   <license>GPL v2 or later</license>
   <url>http://</url>
   <logo>http://</logo>
@@ -16,7 +16,7 @@
   <depend package="dummy-dependency-n" />
   -->
 
-  <!-- Exoter Drivers -->
+  <!-- HDPR Drivers -->
   <depend package="drivers/orogen/transformer" />
   <depend package="drivers/orogen/imu_stim300" />
   <depend package="drivers/orogen/vicon" />
@@ -25,22 +25,22 @@
   <depend package="drivers/orogen/tofcamera_mesasr" />
   <depend package="drivers/orogen/platform_driver" />
 
-  <!-- Exoter Control -->
+  <!-- HDPR Control -->
   <depend package="control/orogen/joint_dispatcher" />
   <depend package="control/orogen/locomotion_control" />
   <depend package="control/orogen/ptu_control" />
 
   <!-- Wheel Walking Control -->
-  <depend package="control/orogen/wheelwalking_control" />
+  <!-- <depend package="control/orogen/wheelwalking_control" /> -->
 
-  <!-- Exoter Perception -->
+  <!-- HDPR Perception -->
   <depend package="image_processing/orogen/viso2" />
   <depend package="image_processing/orogen/icp" />
   <depend package="image_processing/orogen/projection" />
 
-  <!-- Exoter slam -->
-  <depend package="exoter/orogen/exoter_odometry" />
-  <depend package="exoter/orogen/localization_frontend" />
+  <!-- HDPR slam -->
+  <depend package="hdpr/orogen/hdpr_odometry" />
+  <depend package="hdpr/orogen/localization_frontend" />
   <depend package="slam/orogen/pituki" />
   <depend package="slam/orogen/threed_odometry" />
   <depend package="slam/orogen/gp_odometry" />
