@@ -27,7 +27,6 @@ using_task_library 'ptu_control'
 
 #HDPR Perception
 using_task_library 'viso2'
-using_task_library 'icp'
 using_task_library 'projection'
 #using_task_library 'localization_frontend'
 
@@ -36,10 +35,8 @@ using_task_library 'projection'
 
 # General 3D Oodmetry
 using_task_library 'threed_odometry'
-using_task_library 'gp_odometry'
 
 #HDPR Slam
-using_task_library 'pituki'
 
 # Control tasks
 deployment 'hdpr_control' do
@@ -81,7 +78,6 @@ deployment "hdpr_odometry" do
 
     #task("exoter_odometry", "exoter_odometry::Task")
     task("hdpr_odometry", "threed_odometry::Task")
-    task("gp_odometry", "gp_odometry::Task")
 
     add_default_logger
 end
@@ -91,7 +87,6 @@ end
 deployment "hdpr_exteroceptive" do
 
     task("visual_odometry", "viso2::StereoOdometer")
-    task("generalized_icp", "icp::GIcp")
 
     add_default_logger
 end
@@ -99,7 +94,6 @@ end
 # Simultaneous Localization (and Mapping)
 deployment "hdpr_slam" do
 
-    task("pituki", "pituki::Task")
 
     add_default_logger
 end

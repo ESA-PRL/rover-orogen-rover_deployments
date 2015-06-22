@@ -35,15 +35,12 @@
 
   <!-- HDPR Perception -->
   <depend package="image_processing/orogen/viso2" />
-  <depend package="image_processing/orogen/icp" />
   <depend package="image_processing/orogen/projection" />
 
   <!-- HDPR slam -->
   <!-- <depend package="hdpr/orogen/hdpr_odometry" /> -->
   <!-- <depend package="hdpr/orogen/localization_frontend" /> -->
-  <depend package="slam/orogen/pituki" />
   <depend package="slam/orogen/threed_odometry" />
-  <depend package="slam/orogen/gp_odometry" />
 
   <!-- Compilation flags -->
   <tags>stable</tags>
