@@ -24,7 +24,7 @@
   <depend package="drivers/orogen/camera_bb2" />
   <depend package="drivers/orogen/tofcamera_mesasr" />
   <depend package="drivers/orogen/platform_driver" />
-  <depend package="drivers/orogen/velodyne_lidar"
+  <depend package="drivers/orogen/velodyne_lidar" />
 
   <!-- HDPR Control -->
   <depend package="control/orogen/joint_dispatcher" />
