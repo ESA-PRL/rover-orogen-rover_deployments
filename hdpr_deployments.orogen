@@ -71,7 +71,7 @@ deployment "hdpr_perception" do
     task("pancam_stereo", "stereo::Task")
     task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
     task("colorize_pointcloud", "projection::ColorizePointcloud")
-    task("velodyne_lidar", "LaserScanner::LaserScanner")
+    task("velodyne_lidar", "velodyne_lidar::LaserScanner")
     #task("localization_frontend", "localization_frontend::Task")
 
     add_default_logger
