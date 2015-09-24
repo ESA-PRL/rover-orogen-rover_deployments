@@ -17,27 +17,29 @@ using_task_library 'tofcamera_mesasr'
 using_task_library 'kinect2'
 using_task_library 'platform_driver'
 using_task_library 'stereo'
+using_task_library 'kinect2'
 using_task_library 'velodyne_lidar'
 
 # HDPR Control
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
-using_task_library 'ptu_control'
+#using_task_library 'ptu_control'
+using_task_library 'ptu_directedperception'
 
 
 # Exoter Wheel Walking
 #using_task_library 'wheelwalking_control'
 
 #HDPR Perception
-using_task_library 'viso2'
-using_task_library 'projection'
+#using_task_library 'viso2'
+#using_task_library 'projection'
 #using_task_library 'localization_frontend'
 
 #HDRP Odometry
 #using_task_library 'hdpr_odometry'
 
 # General 3D Oodmetry
-using_task_library 'threed_odometry'
+#using_task_library 'threed_odometry'
 
 #HDPR Slam
 
@@ -46,10 +48,11 @@ deployment 'hdpr_control' do
 
     task("platform_driver", "platform_driver::Task").periodic(0.08)
     task("locomotion_control", "locomotion_control::Task")
-    task("ptu_control", "ptu_control::Task")
+#    task("ptu_control", "ptu_control::Task")
     task("read_joint_dispatcher", "joint_dispatcher::Task")
     task("command_joint_dispatcher", "joint_dispatcher::Task")
     #task("wheel_walking_control", "wheelwalking_control::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
 
     add_default_logger
 end
@@ -70,8 +73,9 @@ deployment "hdpr_perception" do
     task("pancam_left", "camera_firewire::CameraTask")
     task("pancam_right", "camera_firewire::CameraTask")
     task("pancam_stereo", "stereo::Task")
+    task("kinect2", "kinect2::Task")
     task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
-    task("colorize_pointcloud", "projection::ColorizePointcloud")
+#    task("colorize_pointcloud", "projection::ColorizePointcloud")
     task("velodyne_lidar", "velodyne_lidar::LaserScanner")
     task("kinect2", "kinect2::Task")
     #task("localization_frontend", "localization_frontend::Task")
@@ -80,29 +84,29 @@ deployment "hdpr_perception" do
 end
 
 # HDPR Odometry
-deployment "hdpr_odometry" do
+#deployment "hdpr_odometry" do
 
     #task("exoter_odometry", "exoter_odometry::Task")
-    task("hdpr_odometry", "threed_odometry::Task")
+#    task("hdpr_odometry", "threed_odometry::Task")
 
-    add_default_logger
-end
+#    add_default_logger
+#end
 
 
 # Exteroceptive Odometry (delta displacements)
-deployment "hdpr_exteroceptive" do
+#deployment "hdpr_exteroceptive" do
 
-    task("visual_odometry", "viso2::StereoOdometer")
+#    task("visual_odometry", "viso2::StereoOdometer")
 
-    add_default_logger
-end
+#    add_default_logger
+#end
 
 # Simultaneous Localization (and Mapping)
-deployment "hdpr_slam" do
+#deployment "hdpr_slam" do
 
 
-    add_default_logger
-end
+#    add_default_logger
+#end
 
 # Ground Truth
 deployment "hdpr_groundtruth" do
@@ -113,5 +117,3 @@ deployment "hdpr_groundtruth" do
 
     add_default_logger
 end
-
-
