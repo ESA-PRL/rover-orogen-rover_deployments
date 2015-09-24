@@ -37,13 +37,14 @@
   <!-- <depend package="control/orogen/wheelwalking_control" /> -->
 
   <!-- HDPR Perception -->
-  <depend package="image_processing/orogen/viso2" />
-  <depend package="image_processing/orogen/projection" />
+  <depend package="image_processing/orogen/image_preprocessing"/>
+  <!--depend package="image_processing/orogen/viso2" />
+  <depend package="image_processing/orogen/projection" /-->
 
   <!-- HDPR slam -->
   <!-- <depend package="hdpr/orogen/hdpr_odometry" /> -->
   <!-- <depend package="hdpr/orogen/localization_frontend" /> -->
-  <depend package="slam/orogen/threed_odometry" />
+  <!--depend package="slam/orogen/threed_odometry" /-->
 
   <!-- Compilation flags -->
   <tags>stable</tags>

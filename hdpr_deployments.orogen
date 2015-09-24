@@ -17,7 +17,6 @@ using_task_library 'tofcamera_mesasr'
 using_task_library 'kinect2'
 using_task_library 'platform_driver'
 using_task_library 'stereo'
-using_task_library 'kinect2'
 using_task_library 'velodyne_lidar'
 using_task_library 'image_preprocessing'
 # HDPR Control
@@ -78,7 +77,6 @@ deployment "hdpr_perception" do
     task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
 #    task("colorize_pointcloud", "projection::ColorizePointcloud")
     task("velodyne_lidar", "velodyne_lidar::LaserScanner")
-    task("kinect2", "kinect2::Task")
     #task("localization_frontend", "localization_frontend::Task")
 
     add_default_logger
