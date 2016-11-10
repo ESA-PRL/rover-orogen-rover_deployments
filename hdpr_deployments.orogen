@@ -6,22 +6,24 @@ name "hdpr_deployments"
 # After installation you find them in <main-dev-folder>/install/bin/<SPACEBOT_PREFIX>...
 
 # HDPR Drivers
-using_task_library 'transformer'
+#using_task_library 'transformer'
 using_task_library 'imu_stim300'
-using_task_library 'vicon'
+#using_task_library 'vicon'
 using_task_library 'gnss_trimble'
-using_task_library 'ar_tracking'
+#using_task_library 'ar_tracking'
 using_task_library 'camera_bb2'
 using_task_library 'camera_firewire'
 using_task_library 'tofcamera_mesasr'
-using_task_library 'kinect2'
+#using_task_library 'kinect2'
 using_task_library 'platform_driver'
 using_task_library 'stereo'
 using_task_library 'velodyne_lidar'
-using_task_library 'image_preprocessing'
+#using_task_library 'image_preprocessing'
 # HDPR Control
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
+using_task_library 'motion_translator'
+using_task_library 'controldev'
 #using_task_library 'ptu_control'
 using_task_library 'ptu_directedperception'
 
@@ -44,75 +46,64 @@ using_task_library 'ptu_directedperception'
 
 # Control tasks
 deployment 'hdpr_control' do
-
     task("platform_driver", "platform_driver::Task").periodic(0.08)
     task("locomotion_control", "locomotion_control::Task")
 #    task("ptu_control", "ptu_control::Task")
     task("read_joint_dispatcher", "joint_dispatcher::Task")
     task("command_joint_dispatcher", "joint_dispatcher::Task")
-    #task("wheel_walking_control", "wheelwalking_control::Task")
+    task("motion_translator", "motion_translator::Task")
+    task("joystick", "controldev::JoystickTask")
+#    task("wheel_walking_control", "wheelwalking_control::Task")
     task("ptu_directedperception", "ptu_directedperception::Task")
-
     add_default_logger
 end
 
 # Proprioceptive sensing tasks
 deployment 'hdpr_proprioceptive' do
-
     task("imu_stim300", "imu_stim300::Task")
-
     add_default_logger
 end
 
 # Perception processing tasks
 deployment "hdpr_perception" do
-
-    task("camera_firewire", "camera_firewire::CameraTask")
+    task("loc_cam", "camera_firewire::CameraTask")
     task("camera_bb2", "camera_bb2::Task")
     task("pancam_left", "camera_firewire::CameraTask")
     task("pancam_right", "camera_firewire::CameraTask")
     task("pancam_stereo", "stereo::Task")
-    task("kinect2", "kinect2::Task")
-    task("converter", "image_preprocessing::DepthImage2Pointcloud")
-    task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
+    task("loccam_stereo", "stereo::Task")
+#    task("kinect2", "kinect2::Task")
+#    task("converter", "image_preprocessing::DepthImage2Pointcloud")
+#    task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
 #    task("colorize_pointcloud", "projection::ColorizePointcloud")
     task("velodyne_lidar", "velodyne_lidar::LaserScanner")
-    #task("localization_frontend", "localization_frontend::Task")
-
+#    task("localization_frontend", "localization_frontend::Task")
     add_default_logger
 end
 
 # HDPR Odometry
 #deployment "hdpr_odometry" do
-
-    #task("exoter_odometry", "exoter_odometry::Task")
+#    task("exoter_odometry", "exoter_odometry::Task")
 #    task("hdpr_odometry", "threed_odometry::Task")
-
 #    add_default_logger
 #end
 
 
 # Exteroceptive Odometry (delta displacements)
 #deployment "hdpr_exteroceptive" do
-
 #    task("visual_odometry", "viso2::StereoOdometer")
-
 #    add_default_logger
 #end
 
 # Simultaneous Localization (and Mapping)
 #deployment "hdpr_slam" do
-
-
 #    add_default_logger
 #end
 
 # Ground Truth
 deployment "hdpr_groundtruth" do
-
-    task("vicon", "vicon::Task").periodic(0.01)
+#    task("vicon", "vicon::Task").periodic(0.01)
     task("gnss_trimble", "gnss_trimble::Task").periodic(0.1)
-    task("ar_tracking", "ar_tracking::Task").periodic(0.1)
-
+#    task("ar_tracking", "ar_tracking::Task").periodic(0.1)
     add_default_logger
 end
