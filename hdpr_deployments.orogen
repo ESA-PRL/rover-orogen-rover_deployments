@@ -26,6 +26,7 @@ using_task_library 'motion_translator'
 using_task_library 'controldev'
 #using_task_library 'ptu_control'
 using_task_library 'ptu_directedperception'
+using_task_library 'pancam_panorama'
 
 
 # Exoter Wheel Walking
@@ -78,6 +79,36 @@ deployment "hdpr_perception" do
 #    task("colorize_pointcloud", "projection::ColorizePointcloud")
     task("velodyne_lidar", "velodyne_lidar::LaserScanner")
 #    task("localization_frontend", "localization_frontend::Task")
+    add_default_logger
+end
+
+# BB2 deployment
+deployment "hdpr_bb2" do
+    task("loc_cam", "camera_firewire::CameraTask")
+    task("camera_bb2", "camera_bb2::Task")
+    task("loccam_stereo", "stereo::Task")
+    add_default_logger
+end
+
+# BB3 deployment
+deployment "hdpr_bb3" do
+    task("camera_firewire", "camera_firewire::CameraTask")
+#    task("camera_bb3", "camera_bb3::Task")
+#    task("bb3_12_stereo", "stereo::Task")
+#    task("bb3_23_stereo", "stereo::Task")
+#    task("bb3_13_stereo", "stereo::Task")
+    add_default_logger
+end
+
+# PanCam test
+deployment "hdpr_pancam" do
+    task("joystick", "controldev::JoystickTask")
+    task("motion_translator", "motion_translator::Task")
+    task("pancam_panorama", "pancam_panorama::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("pancam_stereo", "stereo::Task")
     add_default_logger
 end
 
