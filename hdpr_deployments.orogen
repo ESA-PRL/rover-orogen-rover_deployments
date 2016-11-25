@@ -12,6 +12,7 @@ using_task_library 'imu_stim300'
 using_task_library 'gnss_trimble'
 #using_task_library 'ar_tracking'
 using_task_library 'camera_bb2'
+using_task_library 'camera_bb3'
 using_task_library 'camera_firewire'
 using_task_library 'tofcamera_mesasr'
 #using_task_library 'kinect2'
@@ -43,72 +44,99 @@ using_task_library 'pancam_panorama'
 # General 3D Oodmetry
 #using_task_library 'threed_odometry'
 
-#HDPR Slam
-
 # Control tasks
-deployment 'hdpr_control' do
+deployment 'hdpr_locomotion' do
     task("platform_driver", "platform_driver::Task").periodic(0.08)
     task("locomotion_control", "locomotion_control::Task")
-#    task("ptu_control", "ptu_control::Task")
     task("read_joint_dispatcher", "joint_dispatcher::Task")
     task("command_joint_dispatcher", "joint_dispatcher::Task")
     task("motion_translator", "motion_translator::Task")
     task("joystick", "controldev::JoystickTask")
-#    task("wheel_walking_control", "wheelwalking_control::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_ptu' do
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("pancam_panorama", "pancam_panorama::Task")
     task("ptu_directedperception", "ptu_directedperception::Task")
     add_default_logger
 end
 
-# Proprioceptive sensing tasks
-deployment 'hdpr_proprioceptive' do
+deployment 'hdpr_vision' do
+    task("velodyne_lidar", "velodyne_lidar::LaserScanner")
+    task("tofcamera_mesasr", "tofcamera_mesasr::Task")
+    task("camera_firewire_bb2", "camera_firewire::CameraTask")
+    task("camera_bb2", "camera_bb2::Task")
+    task("camera_firewire_bb3", "camera_firewire::CameraTask")
+    task("camera_bb3", "camera_bb3::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_sensors' do
+    task("imu_stim300", "imu_stim300::Task")
+    task("gps", "gnss_trimble::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_stereo' do
+    task("stereo_pancam", "stereo::Task")
+    task("stereo_bb2", "stereo::Task")
+    task("stereo_bb3", "stereo::Task")
+    add_default_logger
+end
+
+# Unit tests, to be used with the scripts under /bundles/hdpr/scripts/tests
+
+deployment "hdpr_unit_control" do
+    task("platform_driver", "platform_driver::Task").periodic(0.08)
+    task("locomotion_control", "locomotion_control::Task")
+    task("read_joint_dispatcher", "joint_dispatcher::Task")
+    task("command_joint_dispatcher", "joint_dispatcher::Task")
+    task("motion_translator", "motion_translator::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
+    task("joystick", "controldev::JoystickTask")
+    add_default_logger
+end
+
+deployment "hdpr_unit_bb2" do
+    task("camera_firewire_bb2", "camera_firewire::CameraTask")
+    task("camera_bb2", "camera_bb2::Task")
+    task("stereo_bb2", "stereo::Task")
+    add_default_logger
+end
+
+deployment "hdpr_unit_bb3" do
+    task("camera_firewire_bb3", "camera_firewire::CameraTask")
+    task("camera_bb3", "camera_bb3::Task")
+    task("stereo_bb3", "stereo::Task")
+    add_default_logger
+end
+
+deployment "hdpr_unit_pancam" do
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("stereo_pancam", "stereo::Task")
+    add_default_logger
+end
+
+deployment "hdpr_unit_imu" do
     task("imu_stim300", "imu_stim300::Task")
     add_default_logger
 end
 
-# Perception processing tasks
-deployment "hdpr_perception" do
-    task("loc_cam", "camera_firewire::CameraTask")
-    task("camera_bb2", "camera_bb2::Task")
-    task("pancam_left", "camera_firewire::CameraTask")
-    task("pancam_right", "camera_firewire::CameraTask")
-    task("pancam_stereo", "stereo::Task")
-    task("loccam_stereo", "stereo::Task")
-#    task("kinect2", "kinect2::Task")
-#    task("converter", "image_preprocessing::DepthImage2Pointcloud")
-#    task("camera_tof", "tofcamera_mesasr::Task").periodic(0.5)
-#    task("colorize_pointcloud", "projection::ColorizePointcloud")
+deployment "hdpr_unit_gps" do
+    task("gps", "gnss_trimble::Task")
+    add_default_logger
+end
+
+deployment "hdpr_unit_lidar" do
     task("velodyne_lidar", "velodyne_lidar::LaserScanner")
-#    task("localization_frontend", "localization_frontend::Task")
     add_default_logger
 end
 
-# BB2 deployment
-deployment "hdpr_bb2" do
-    task("loc_cam", "camera_firewire::CameraTask")
-    task("camera_bb2", "camera_bb2::Task")
-    task("loccam_stereo", "stereo::Task")
-    add_default_logger
-end
-
-# BB3 deployment
-deployment "hdpr_bb3" do
-    task("camera_firewire", "camera_firewire::CameraTask")
-#    task("camera_bb3", "camera_bb3::Task")
-#    task("bb3_12_stereo", "stereo::Task")
-#    task("bb3_23_stereo", "stereo::Task")
-#    task("bb3_13_stereo", "stereo::Task")
-    add_default_logger
-end
-
-# PanCam test
-deployment "hdpr_pancam" do
-    task("joystick", "controldev::JoystickTask")
-    task("motion_translator", "motion_translator::Task")
-    task("pancam_panorama", "pancam_panorama::Task")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("pancam_left", "camera_firewire::CameraTask")
-    task("pancam_right", "camera_firewire::CameraTask")
-    task("pancam_stereo", "stereo::Task")
+deployment "hdpr_unit_mesa" do
+    task("tofcamera_mesasr", "tofcamera_mesasr::Task")
     add_default_logger
 end
 
@@ -118,7 +146,6 @@ end
 #    task("hdpr_odometry", "threed_odometry::Task")
 #    add_default_logger
 #end
-
 
 # Exteroceptive Odometry (delta displacements)
 #deployment "hdpr_exteroceptive" do

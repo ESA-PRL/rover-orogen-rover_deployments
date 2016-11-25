@@ -23,6 +23,7 @@
   <depend package="drivers/orogen/gnss_trimble" />
   <depend package="drivers/orogen/camera_firewire" />
   <depend package="drivers/orogen/camera_bb2" />
+  <depend package="drivers/orogen/camera_bb3" />
   <depend package="drivers/orogen/tofcamera_mesasr" />
   <depend package="drivers/orogen/platform_driver" />
   <depend package="perception/orogen/stereo" />
