@@ -120,6 +120,15 @@ deployment "hdpr_unit_pancam" do
     add_default_logger
 end
 
+deployment "hdpr_unit_ptu" do
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("pancam_panorama", "pancam_panorama::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
+    task("joystick", "controldev::JoystickTask")
+    add_default_logger
+end
+
 deployment "hdpr_unit_imu" do
     task("imu_stim300", "imu_stim300::Task")
     add_default_logger
