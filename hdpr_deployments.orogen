@@ -1,64 +1,56 @@
 name "hdpr_deployments"
 
+############################################################# Included libraries
 
-# In order to avoid nameclashes, in case a module installs a deployment directly
-# using a prefix here (this prefix is for the deployment, i.e the executables, only
-# After installation you find them in <main-dev-folder>/install/bin/<SPACEBOT_PREFIX>...
-
-# HDPR Drivers
-#using_task_library 'transformer'
+# Sensors
 using_task_library 'imu_stim300'
-#using_task_library 'vicon'
+using_task_library 'vicon'
 using_task_library 'gnss_trimble'
-#using_task_library 'ar_tracking'
 using_task_library 'camera_bb2'
 using_task_library 'camera_bb3'
 using_task_library 'camera_firewire'
 using_task_library 'tofcamera_mesasr'
-#using_task_library 'kinect2'
-using_task_library 'platform_driver'
-using_task_library 'stereo'
 using_task_library 'velodyne_lidar'
-#using_task_library 'image_preprocessing'
-# HDPR Control
+
+# Drivers
+using_task_library 'platform_driver'
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
-using_task_library 'motion_translator'
 using_task_library 'controldev'
-#using_task_library 'ptu_control'
 using_task_library 'ptu_directedperception'
+
+# Control
+using_task_library 'motion_translator'
+using_task_library 'command_arbiter'
+using_task_library 'waypoint_navigation'
+
+# Processing
+using_task_library 'stereo'
 using_task_library 'pancam_panorama'
+using_task_library 'pancam_360'
 
-
-# Exoter Wheel Walking
-#using_task_library 'wheelwalking_control'
-
-#HDPR Perception
+# Other
+#using_task_library 'transformer'
+#using_task_library 'ar_tracking'
+#using_task_library 'kinect2'
+#using_task_library 'image_preprocessing'
+#using_task_library 'ptu_control'
 #using_task_library 'viso2'
 #using_task_library 'projection'
 #using_task_library 'localization_frontend'
-
-#HDRP Odometry
 #using_task_library 'hdpr_odometry'
-
-# General 3D Oodmetry
 #using_task_library 'threed_odometry'
 
-# Control tasks
-deployment 'hdpr_locomotion' do
-    task("platform_driver", "platform_driver::Task").periodic(0.08)
+######################################################### Deployement definition
+
+# HDPR general deployements
+deployment 'hdpr_control' do
+    task("platform_driver", "platform_driver::Task")
     task("locomotion_control", "locomotion_control::Task")
     task("read_joint_dispatcher", "joint_dispatcher::Task")
     task("command_joint_dispatcher", "joint_dispatcher::Task")
     task("motion_translator", "motion_translator::Task")
     task("joystick", "controldev::JoystickTask")
-    add_default_logger
-end
-
-deployment 'hdpr_ptu' do
-    task("pancam_left", "camera_firewire::CameraTask")
-    task("pancam_right", "camera_firewire::CameraTask")
-    task("pancam_panorama", "pancam_panorama::Task")
     task("ptu_directedperception", "ptu_directedperception::Task")
     add_default_logger
 end
@@ -73,12 +65,6 @@ deployment 'hdpr_vision' do
     add_default_logger
 end
 
-deployment 'hdpr_sensors' do
-    task("imu_stim300", "imu_stim300::Task")
-    task("gps", "gnss_trimble::Task")
-    add_default_logger
-end
-
 deployment 'hdpr_stereo' do
     task("stereo_pancam", "stereo::Task")
     task("stereo_bb2", "stereo::Task")
@@ -86,9 +72,61 @@ deployment 'hdpr_stereo' do
     add_default_logger
 end
 
-# Unit tests, to be used with the scripts under /bundles/hdpr/scripts/tests
+# Separate deployements so that they would be in their own thread during runtime
+deployment 'hdpr_pancam' do
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("pancam_panorama", "pancam_panorama::Task")
+    add_default_logger
+end
 
+deployment 'hdpr_lidar' do
+    task("velodyne_lidar", "velodyne_lidar::LaserScanner")
+    add_default_logger
+end
+
+deployment 'hdpr_tof' do
+    task("tofcamera_mesasr", "tofcamera_mesasr::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_bb2' do
+    task("camera_firewire_bb2", "camera_firewire::CameraTask")
+    task("camera_bb2", "camera_bb2::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_bb3' do
+    task("camera_firewire_bb3", "camera_firewire::CameraTask")
+    task("camera_bb3", "camera_bb3::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_imu' do
+    task("imu_stim300", "imu_stim300::Task")
+    add_default_logger
+end
+
+deployment 'hdpr_gps' do
+    task("gps", "gnss_trimble::Task")
+    add_default_logger
+end
+
+#################################################### Deployements for unit tests
+
+# Unit tests, to be used with the scripts under /bundles/hdpr/scripts/tests
 deployment "hdpr_unit_control" do
+    task("platform_driver", "platform_driver::Task")
+    task("locomotion_control", "locomotion_control::Task")
+    task("read_joint_dispatcher", "joint_dispatcher::Task")
+    task("command_joint_dispatcher", "joint_dispatcher::Task")
+    task("motion_translator", "motion_translator::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
+    task("joystick", "controldev::JoystickTask")
+    add_default_logger
+end
+
+deployment "hdpr_unit_following" do
     task("platform_driver", "platform_driver::Task").periodic(0.08)
     task("locomotion_control", "locomotion_control::Task")
     task("read_joint_dispatcher", "joint_dispatcher::Task")
@@ -96,6 +134,11 @@ deployment "hdpr_unit_control" do
     task("motion_translator", "motion_translator::Task")
     task("ptu_directedperception", "ptu_directedperception::Task")
     task("joystick", "controldev::JoystickTask")
+    # Newly added tasks compared to "hdpr_unit_control"
+    task("vicon", "vicon::Task").periodic(0.1)
+    task("waypoint_navigation", "waypoint_navigation::Task")
+    task("trajectoryGen", "waypoint_navigation::TrajectoryTest")
+    task("command_arbiter", "command_arbiter::Task")
     add_default_logger
 end
 
@@ -129,6 +172,15 @@ deployment "hdpr_unit_ptu" do
     add_default_logger
 end
 
+deployment "hdpr_unit_360" do
+    task("pancam_left", "camera_firewire::CameraTask")
+    task("pancam_right", "camera_firewire::CameraTask")
+    task("pancam_360", "pancam_360::Task")
+    task("ptu_directedperception", "ptu_directedperception::Task")
+    task("joystick", "controldev::JoystickTask")
+    add_default_logger
+end
+
 deployment "hdpr_unit_imu" do
     task("imu_stim300", "imu_stim300::Task")
     add_default_logger
@@ -149,6 +201,8 @@ deployment "hdpr_unit_mesa" do
     add_default_logger
 end
 
+######################################################## Deprecated deployements
+
 # HDPR Odometry
 #deployment "hdpr_odometry" do
 #    task("exoter_odometry", "exoter_odometry::Task")
@@ -168,9 +222,10 @@ end
 #end
 
 # Ground Truth
-deployment "hdpr_groundtruth" do
+#deployment "hdpr_groundtruth" do
 #    task("vicon", "vicon::Task").periodic(0.01)
-    task("gnss_trimble", "gnss_trimble::Task").periodic(0.1)
+#    task("gnss_trimble", "gnss_trimble::Task").periodic(0.1)
 #    task("ar_tracking", "ar_tracking::Task").periodic(0.1)
-    add_default_logger
-end
+#    add_default_logger
+#end
+
