@@ -38,6 +38,7 @@ using_task_library 'pancam_360'
 #using_task_library 'viso2'
 #using_task_library 'projection'
 #using_task_library 'localization_frontend'
+using_task_library 'odometry'
 #using_task_library 'hdpr_odometry'
 #using_task_library 'threed_odometry'
 
@@ -204,6 +205,13 @@ end
 ######################################################## Deprecated deployements
 
 # HDPR Odometry
+deployment "hdpr_unit_odometry" do
+    task("imu_stim300", "imu_stim300::Task")
+    task("platform_driver", "platform_driver::Task")
+    task("read_joint_dispatcher", "joint_dispatcher::Task")
+    task("skid_odometry", "odometry::Skid")
+    add_default_logger
+end
 #deployment "hdpr_odometry" do
 #    task("exoter_odometry", "exoter_odometry::Task")
 #    task("hdpr_odometry", "threed_odometry::Task")
