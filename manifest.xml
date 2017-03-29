@@ -37,6 +37,7 @@
   <depend package="control/orogen/motion_translator" />
   <!-- <depend package="control/orogen/ptu_control" /> -->
   <depend package="drivers/orogen/ptu_directedperception" />
+  <depend package="drivers/orogen/telemetry_telecommand" />
 
   <!-- Wheel Walking Control -->
   <!-- <depend package="control/orogen/wheelwalking_control" /> -->
