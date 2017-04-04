@@ -132,6 +132,11 @@ deployment 'hdpr_gps_heading' do
     add_default_logger
 end
 
+deployment "hdpr_temperature" do
+    task("temperature", "temperature::Task")
+    add_default_logger
+end
+
 deployment 'hdpr_tmtchandling' do
     task("telemetry_telecommand", "telemetry_telecommand::Task")
     add_default_logger
