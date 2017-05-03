@@ -34,6 +34,8 @@ using_task_library 'pancam_360'
 using_task_library 'viso2'
 using_task_library 'gps_heading'
 using_task_library 'shutter_controller'
+using_task_library 'dem_generation'
+using_task_library 'camera_trigger'
 
 # Other
 using_task_library 'transformer'
@@ -83,6 +85,7 @@ deployment 'hdpr_stereo' do
     task("stereo_pancam", "stereo::Task")
     task("stereo_bb2", "stereo::Task")
     task("stereo_bb3", "stereo::Task")
+    task("stereo_360", "stereo::Task")
     add_default_logger
 end
 
@@ -137,8 +140,8 @@ deployment "hdpr_temperature" do
     add_default_logger
 end
 
-deployment 'hdpr_tmtchandling' do
-    task("telemetry_telecommand", "telemetry_telecommand::Task")
+deployment "hdpr_shutter_controller" do
+    task("shutter_controller", "shutter_controller::Task")
     add_default_logger
 end
 
@@ -257,6 +260,27 @@ deployment "hdpr_unit_shutter_controller" do
     add_default_logger
 end
 
+
+######################################################## TMTC deployements
+
+deployment 'hdpr_tmtchandling' do
+    task("telemetry_telecommand", "telemetry_telecommand::Task")
+    task("trigger_lidar", "camera_trigger::Task")
+    task("dem_generation_lidar", "dem_generation::Task")
+    task("trigger_tof", "camera_trigger::Task")
+    task("dem_generation_tof", "dem_generation::Task")
+    task("trigger_bb2", "camera_trigger::Task")
+    task("dem_generation_bb2", "dem_generation::Task")
+    task("trigger_bb3", "camera_trigger::Task")
+    task("dem_generation_bb3", "dem_generation::Task")
+    task("trigger_pancam", "camera_trigger::Task")
+    task("dem_generation_pancam", "dem_generation::Task")
+    task("trigger_360", "camera_trigger::Task")
+    task("dem_generation_360", "dem_generation::Task")
+    add_default_logger
+end
+
+
 ######################################################## Deprecated deployements
 
 # HDPR Odometry
@@ -287,3 +311,6 @@ end
 #    add_default_logger
 #end
 
+deployment "hdpr_vicon_unit" do
+    task("vicon", "vicon::Task").periodic(0.05)
+end
