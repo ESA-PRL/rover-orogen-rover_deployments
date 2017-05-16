@@ -31,6 +31,7 @@ using_task_library 'simple_pose'
 using_task_library 'stereo'
 using_task_library 'pancam_panorama'
 using_task_library 'pancam_360'
+using_task_library 'panoramica'
 using_task_library 'viso2'
 using_task_library 'gps_heading'
 using_task_library 'shutter_controller'
@@ -48,6 +49,14 @@ using_task_library 'transformer'
 #using_task_library 'odometry'
 using_task_library 'threed_odometry'
 using_task_library 'telemetry_telecommand'
+
+# Autonomy
+using_task_library 'cartographer'
+using_task_library 'viso2_with_imu'
+using_task_library 'motion_planning_libraries'
+using_task_library 'traversability_explorer'
+using_task_library 'traversability_loader'
+using_task_library 'trajectory_helpers'
 
 ######################################################### Deployement definition
 
@@ -85,7 +94,7 @@ deployment 'hdpr_stereo' do
     task("stereo_pancam", "stereo::Task")
     task("stereo_bb2", "stereo::Task")
     task("stereo_bb3", "stereo::Task")
-    task("stereo_360", "stereo::Task")
+    task("stereo_panoramica", "stereo::Task")
     add_default_logger
 end
 
@@ -95,6 +104,7 @@ deployment 'hdpr_pancam' do
     task("pancam_right", "camera_firewire::CameraTask")
     task("pancam_panorama", "pancam_panorama::Task")
     task("pancam_360", "pancam_360::Task")
+    task("panoramica", "panoramica::Task")
     add_default_logger
 end
 
@@ -127,6 +137,11 @@ end
 
 deployment 'hdpr_gps' do
     task("gps", "gnss_trimble::Task")
+    task("gps_heading", "gps_heading::Task")
+    task("waypoint_navigation", "waypoint_navigation::Task")
+    task("trajectoryGen", "waypoint_navigation::TrajectoryTest")
+    task("command_arbiter", "command_arbiter::Task")
+    task("simple_pose", "simple_pose::Task")
     add_default_logger
 end
 
@@ -178,8 +193,7 @@ deployment "hdpr_unit_following" do
 end
 
 deployment "hdpr_unit_visual_odometry" do
-    task("camera_firewire_bb2", "camera_firewire::CameraTask")
-    task("camera_bb2", "camera_bb2::Task")
+    task("viso2_with_imu","viso2_with_imu::Task")
     task("viso2", "viso2::StereoOdometer")
     add_default_logger
 end
@@ -275,8 +289,8 @@ deployment 'hdpr_tmtchandling' do
     task("dem_generation_bb3", "dem_generation::Task")
     task("trigger_pancam", "camera_trigger::Task")
     task("dem_generation_pancam", "dem_generation::Task")
-    task("trigger_360", "camera_trigger::Task")
-    task("dem_generation_360", "dem_generation::Task")
+    task("trigger_panoramica", "camera_trigger::Task")
+    task("dem_generation_panoramica", "dem_generation::Task")
     add_default_logger
 end
 
@@ -314,3 +328,17 @@ end
 deployment "hdpr_vicon_unit" do
     task("vicon", "vicon::Task").periodic(0.05)
 end
+
+# Autonomy related tasks
+deployment "hdpr_autonomy" do
+   task("cartographer","cartographer::Task")
+   task("path_planner", "motion_planning_libraries::Task")
+   task("traversability", "traversability_explorer::Task")
+   task("traversability_loader", "traversability_loader::Task")
+   task("goal_set", "trajectory_helpers::GoalGenerator")
+   task("trajectory_refiner", "trajectory_helpers::TrajectoryRefiner")
+   task("pose_est", "simple_pose::Task")
+
+   add_default_logger
+end
+

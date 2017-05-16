@@ -33,6 +33,7 @@
   <depend package="control/orogen/joint_dispatcher" />
   <depend package="control/orogen/locomotion_control" />
   <depend package="control/orogen/pancam_panorama" />
+  <depend package="control/orogen/panoramica" />
   <depend package="drivers/orogen/controldev" />
   <depend package="control/orogen/motion_translator" />
   <!-- <depend package="control/orogen/ptu_control" /> -->
