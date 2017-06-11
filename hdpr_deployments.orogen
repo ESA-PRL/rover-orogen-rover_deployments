@@ -160,6 +160,11 @@ deployment "hdpr_shutter_controller" do
     add_default_logger
 end
 
+deployment "hdpr_shutter_controller_bumblebee" do
+    task("shutter_controller_bb2", "shutter_controller::Task")
+    task("shutter_controller_bb3", "shutter_controller::Task")
+    add_default_logger
+end
 
 #################################################### Deployements for unit tests
 
@@ -271,6 +276,16 @@ deployment "hdpr_unit_shutter_controller" do
     task("pancam_right", "camera_firewire::CameraTask")
     task("stereo_pancam", "stereo::Task")
     task("shutter_controller", "shutter_controller::Task")
+    add_default_logger
+end
+
+deployment "hdpr_unit_bumblebee_shutter_controller" do
+    task("bb2", "camera_firewire::CameraTask")
+    task("bb3", "camera_firewire::CameraTask")
+    task("camera_bb2", "camera_bb2::Task")
+    task("camera_bb3", "camera_bb3::Task")
+    task("shutter_controller_bb2", "shutter_controller::Task")
+    task("shutter_controller_bb3", "shutter_controller::Task")
     add_default_logger
 end
 
