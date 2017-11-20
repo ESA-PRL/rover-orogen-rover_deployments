@@ -40,6 +40,8 @@
   <depend package="drivers/orogen/ptu_directedperception" />
   <depend package="drivers/orogen/telemetry_telecommand" />
 
+  <depend package="perception/orogen/hazard_detector" />
+
   <!-- Wheel Walking Control -->
   <!-- <depend package="control/orogen/wheelwalking_control" /> -->
 

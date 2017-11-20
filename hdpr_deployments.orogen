@@ -49,6 +49,7 @@ using_task_library 'transformer'
 #using_task_library 'odometry'
 using_task_library 'threed_odometry'
 using_task_library 'telemetry_telecommand'
+using_task_library 'hazard_detector'
 
 # Autonomy
 using_task_library 'cartographer'
@@ -286,6 +287,11 @@ deployment "hdpr_unit_bumblebee_shutter_controller" do
     task("camera_bb3", "camera_bb3::Task")
     task("shutter_controller_bb2", "shutter_controller::Task")
     task("shutter_controller_bb3", "shutter_controller::Task")
+    add_default_logger
+end
+
+deployment "hazard_detector" do
+    task("hazard_detector", "hazard_detector::Task")
     add_default_logger
 end
 
