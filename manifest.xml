@@ -1,8 +1,8 @@
 <package>
-  <description brief="HDPR deployments">
-  HDPR rover default deployment set
+  <description brief="rover deployments">
+  Rover default deployment set
   </description>
-  <author>Javier Hidalgo Carrio/javier.hidalgo-carrio@dfki.de, martin.azkarate@esa.int</author>
+  <author>/Martin Azkarate/martin.azkarate@esa.int</author>
   <license>GPL v2 or later</license>
   <url>http://</url>
   <logo>http://</logo>
@@ -16,7 +16,7 @@
   <depend package="dummy-dependency-n" />
   -->
 
-  <!-- HDPR Drivers -->
+  <!-- Rover Drivers -->
   <!-- <depend package="drivers/orogen/transformer" /> -->
   <depend package="drivers/orogen/imu_stim300" />
   <!-- <depend package="drivers/orogen/vicon" /> -->
@@ -29,7 +29,7 @@
   <depend package="perception/orogen/stereo" />
   <depend package="drivers/orogen/velodyne_lidar" />
 
-  <!-- HDPR Control -->
+  <!-- Rover Control -->
   <depend package="control/orogen/joint_dispatcher" />
   <depend package="control/orogen/locomotion_control" />
   <depend package="control/orogen/pancam_panorama" />
@@ -45,14 +45,14 @@
   <!-- Wheel Walking Control -->
   <!-- <depend package="control/orogen/wheelwalking_control" /> -->
 
-  <!-- HDPR Perception -->
+  <!-- Rover Perception -->
   <!-- <depend package="image_processing/orogen/image_preprocessing"/> -->
   <!--depend package="image_processing/orogen/viso2" />
   <depend package="image_processing/orogen/projection" /-->
 
-  <!-- HDPR slam -->
-  <!-- <depend package="hdpr/orogen/hdpr_odometry" /> -->
-  <!-- <depend package="hdpr/orogen/localization_frontend" /> -->
+  <!-- Rover slam -->
+  <!-- <depend package="rover/orogen/rover_odometry" /> -->
+  <!-- <depend package="rover/orogen/localization_frontend" /> -->
   <!--depend package="slam/orogen/threed_odometry" /-->
   <depend package="slam/orogen/odometry" />
 
