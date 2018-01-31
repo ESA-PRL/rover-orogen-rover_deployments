@@ -54,7 +54,7 @@
   <depend package="perception/orogen/hazard_detector" />
   <depend package="perception/orogen/shutter_controller" />
   <depend package="perception/orogen/stereo" />
-  <depend package="perception/orogen/dem_generator" />
+  <depend package="perception/orogen/dem_generation" />
   <depend package="perception/orogen/cartographer" />
 
   <!-- Rover Planning -->
