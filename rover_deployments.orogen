@@ -16,6 +16,7 @@ using_task_library 'velodyne_lidar'
 using_task_library 'platform_driver'
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
+using_task_library 'wheelwalking_control'
 using_task_library 'controldev'
 using_task_library 'ptu_directedperception'
 using_task_library 'dsp1760'
@@ -41,6 +42,7 @@ using_task_library 'dem_generation'
 using_task_library 'camera_trigger'
 using_task_library 'cartographer'
 using_task_library 'path_planning'
+#using_task_library 'ga_slam'
 
 # Other
 #using_task_library 'transformer'
@@ -68,6 +70,7 @@ deployment 'control' do
     task("joystick", "controldev::JoystickTask")
     task("ptu_directedperception", "ptu_directedperception::Task")
     task("ptu_control", "ptu_control::Task")
+    task("wheel_walking_control", "wheelwalking_control::Task")
     add_default_logger
 end
 
@@ -325,7 +328,6 @@ end
 deployment "groundtruth" do
     task("vicon", "vicon::Task").periodic(0.01)
     task("gnss_trimble", "gnss_trimble::Task").periodic(0.1)
-    task("ar_tracking", "ar_tracking::Task").periodic(0.1)
     add_default_logger
 end
 
@@ -348,6 +350,7 @@ end
 deployment "autonomy" do
    task("cartographer","cartographer::Task")
    task("path_planner", "path_planning::Task")
+   #task("ga_slam", "ga_slam::Task")
    #task("traversability", "traversability::Task")
    #task("traversability_loader", "traversability_loader::Task")
    #task("goal_set", "trajectory_helpers::GoalGenerator")

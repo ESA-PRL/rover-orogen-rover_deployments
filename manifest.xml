@@ -47,7 +47,6 @@
   <depend package="control/orogen/waypoint_navigation" />
   <depend package="control/orogen/wheelwalking_control" />   <!-- Wheel Walking Control -->
 
-	
   <!-- Rover Perception -->
   <depend package="perception/orogen/viso2" />
   <depend package="perception/orogen/viso2_with_imu" />
@@ -63,8 +62,9 @@
   <!-- Rover slam -->
   <!-- <depend package="rover/orogen/rover_odometry" /> -->
   <!-- <depend package="rover/orogen/localization_frontend" /> -->
-  <!-- <depend package="slam/orogen/threed_odometry" /> -->
+  <depend package="slam/orogen/threed_odometry" /> 
   <depend package="slam/orogen/odometry" />
+  <!-- <depend package="slam/orogen/ga_slam" /> -->
 
   <!-- Rover simulation -->
   <depend package="simulation/orogen/simulation_vrep" />
