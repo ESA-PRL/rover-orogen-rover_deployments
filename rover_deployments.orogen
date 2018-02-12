@@ -269,6 +269,11 @@ deployment "unit_temperature" do
 end
 
 deployment "unit_shutter_controller" do
+    task("shutter_controller", "shutter_controller::Task")
+    add_default_logger
+end
+
+deployment "unit_pancam_shutter_controller" do
     task("pancam_left", "camera_firewire::CameraTask")
     task("pancam_right", "camera_firewire::CameraTask")
     task("stereo_pancam", "stereo::Task")
