@@ -17,6 +17,7 @@ using_task_library 'platform_driver'
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
 using_task_library 'wheelwalking_control'
+using_task_library 'locomotion_switcher'
 using_task_library 'controldev'
 using_task_library 'ptu_directedperception'
 using_task_library 'dsp1760'
@@ -35,6 +36,7 @@ using_task_library 'pancam_panorama'
 using_task_library 'pancam_360'
 using_task_library 'viso2'
 using_task_library 'viso2_with_imu'
+using_task_library 'viso2_evaluation'
 using_task_library 'gps_heading'
 using_task_library 'shutter_controller'
 using_task_library 'hazard_detector'
@@ -72,6 +74,7 @@ deployment 'control' do
     task("ptu_directedperception", "ptu_directedperception::Task")
     task("ptu_control", "ptu_control::Task")
     task("wheel_walking_control", "wheelwalking_control::Task")
+    task("locomotion_switcher", "locomotion_switcher::Task")
     add_default_logger
 end
 
@@ -130,6 +133,36 @@ deployment 'bb3' do
     add_default_logger
 end
 
+deployment 'pancam_bb3' do
+    task("camera_firewire_pancam", "camera_firewire::CameraTask")
+    task("camera_pancam", "camera_bb3::Task")
+    task("pancam_panorama", "pancam_panorama::Task")
+    task("pancam_360", "pancam_360::Task")
+    task("stereo_pancam", "stereo::Task")
+    task("dem_generation_pancam", "dem_generation::Task")
+   add_default_logger
+end
+
+deployment 'navcam' do
+    task("camera_firewire_navcam", "camera_firewire::CameraTask")
+    task("camera_navcam", "camera_bb2::Task")
+    task("navcam_panorama", "pancam_panorama::Task")
+    task("navcam_360", "pancam_360::Task")
+    task("stereo_navcam", "stereo::Task")
+    task("dem_generation_navcam", "dem_generation::Task")
+   add_default_logger
+end
+
+deployment 'loccam' do
+    task("camera_firewire_loccam", "camera_firewire::CameraTask")
+    task("camera_loccam", "camera_bb2::Task")
+    task("loccam_panorama", "pancam_panorama::Task")
+    task("loccam_360", "pancam_360::Task")
+    task("stereo_loccam", "stereo::Task")
+    task("dem_generation_loccam", "dem_generation::Task")
+   add_default_logger
+end
+
 deployment 'imu' do
     task("imu_stim300", "imu_stim300::Task")
     add_default_logger
@@ -163,19 +196,6 @@ end
 
 #################################################### Deployements for unit tests
 
-# Unit tests, to be used with the scripts under /bundles/rover/scripts/tests
-deployment "unit_control" do
-    task("platform_driver", "platform_driver::Task")
-    task("locomotion_control", "locomotion_control::Task")
-    task("read_joint_dispatcher", "joint_dispatcher::Task")
-    task("command_joint_dispatcher", "joint_dispatcher::Task")
-    task("motion_translator", "motion_translator::Task")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("ptu_control", "ptu_control::Task")
-    task("joystick", "controldev::JoystickTask")
-    add_default_logger
-end
-
 deployment "unit_following" do
     task("platform_driver", "platform_driver::Task").periodic(0.08)
     task("locomotion_control", "locomotion_control::Task")
@@ -195,6 +215,7 @@ end
 
 deployment "unit_visual_odometry" do
     task("viso2_with_imu","viso2_with_imu::Task")
+    task("viso2_evaluation","viso2_evaluation::Task")
     task("viso2", "viso2::StereoOdometer")
     add_default_logger
 end
@@ -297,26 +318,26 @@ deployment "unit_hazard_detector" do
     add_default_logger
 end
 
-
-######################################################## TMTC deployements
-
 deployment 'tmtchandling' do
     task("telemetry_telecommand", "telemetry_telecommand::Task")
     task("trigger_lidar", "camera_trigger::Task")
-    task("dem_generation_lidar", "dem_generation::Task")
     task("trigger_tof", "camera_trigger::Task")
-    task("dem_generation_tof", "dem_generation::Task")
-    task("trigger_bb2", "camera_trigger::Task")
-    task("dem_generation_bb2", "dem_generation::Task")
-    task("trigger_bb3", "camera_trigger::Task")
-    task("dem_generation_bb3", "dem_generation::Task")
+    task("trigger_navcam", "camera_trigger::Task")
+    task("trigger_loccam", "camera_trigger::Task")
     task("trigger_pancam", "camera_trigger::Task")
-    task("dem_generation_pancam", "dem_generation::Task")
-    task("trigger_panoramica", "camera_trigger::Task")
-    task("dem_generation_panoramica", "dem_generation::Task")
+    task("trigger_pancam_360", "camera_trigger::Task")
     add_default_logger
 end
 
+deployment 'dem_generation' do
+    task("dem_generation_lidar", "dem_generation::Task")
+    task("dem_generation_tof", "dem_generation::Task")
+    task("dem_generation_bb2", "dem_generation::Task")
+    task("dem_generation_bb3", "dem_generation::Task")
+    task("dem_generation_pancam", "dem_generation::Task")
+    task("dem_generation_panoramica", "dem_generation::Task")
+    add_default_logger
+end
 
 ######################################################## Deprecated deployements
 

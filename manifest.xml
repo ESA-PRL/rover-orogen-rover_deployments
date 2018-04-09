@@ -46,10 +46,12 @@
   <depend package="control/orogen/ptu_control" />
   <depend package="control/orogen/waypoint_navigation" />
   <depend package="control/orogen/wheelwalking_control" />   <!-- Wheel Walking Control -->
+  <depend package="control/orogen/locomotion_switcher" />   <!-- Wheel Walking Control -->
 
   <!-- Rover Perception -->
   <depend package="perception/orogen/viso2" />
   <depend package="perception/orogen/viso2_with_imu" />
+  <depend package="perception/orogen/viso2_evaluation" />
   <depend package="perception/orogen/hazard_detector" />
   <depend package="perception/orogen/shutter_controller" />
   <depend package="perception/orogen/stereo" />
