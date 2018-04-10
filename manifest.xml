@@ -47,6 +47,7 @@
   <depend package="control/orogen/waypoint_navigation" />
   <depend package="control/orogen/wheelwalking_control" />   <!-- Wheel Walking Control -->
   <depend package="control/orogen/locomotion_switcher" />   <!-- Wheel Walking Control -->
+  <depend package="control/orogen/fdir" />
 
   <!-- Rover Perception -->
   <depend package="perception/orogen/viso2" />

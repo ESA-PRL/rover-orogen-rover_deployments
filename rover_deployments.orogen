@@ -29,6 +29,8 @@ using_task_library 'ptu_control'
 using_task_library 'motion_translator'
 using_task_library 'command_arbiter'
 using_task_library 'waypoint_navigation'
+using_task_library 'slippage_estimator'
+using_task_library 'fdir'
 
 # Processing
 using_task_library 'stereo'
@@ -76,6 +78,11 @@ deployment 'control' do
     task("wheel_walking_control", "wheelwalking_control::Task")
     task("locomotion_switcher", "locomotion_switcher::Task")
     add_default_logger
+end
+
+deployment 'fdir' do
+    task("slippage_estimator", "slippage_estimator::Task")
+    task("fdir", "fdir::Task")
 end
 
 deployment "navigation" do
