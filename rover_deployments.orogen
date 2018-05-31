@@ -45,6 +45,7 @@ using_task_library 'hazard_detector'
 using_task_library 'dem_generation'
 using_task_library 'camera_trigger'
 using_task_library 'cartographer'
+using_task_library 'traversability'
 using_task_library 'path_planning'
 #using_task_library 'ga_slam'
 
@@ -385,7 +386,7 @@ deployment "autonomy" do
    task("cartographer","cartographer::Task")
    task("path_planner", "path_planning::Task")
    #task("ga_slam", "ga_slam::Task")
-   #task("traversability", "traversability::Task")
+   task("traversability", "traversability::Task")
    #task("traversability_loader", "traversability_loader::Task")
    #task("goal_set", "trajectory_helpers::GoalGenerator")
    #task("trajectory_refiner", "trajectory_helpers::TrajectoryRefiner")

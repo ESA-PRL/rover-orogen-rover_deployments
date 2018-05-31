@@ -58,6 +58,7 @@
   <depend package="perception/orogen/stereo" />
   <depend package="perception/orogen/dem_generation" />
   <depend package="perception/orogen/cartographer" />
+  <depend package="perception/orogen/traversability" />
 
   <!-- Rover Planning -->
   <depend package="planning/orogen/path_planning" />
