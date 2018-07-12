@@ -190,11 +190,6 @@ deployment 'gps_heading' do
     add_default_logger
 end
 
-deployment "temperature" do
-    task("temperature", "temperature::Task")
-    add_default_logger
-end
-
 deployment "shutter_controller" do
     task("shutter_controller_pancam", "shutter_controller::Task")
     task("shutter_controller_bb2", "shutter_controller::Task")
@@ -268,32 +263,12 @@ deployment "unit_360" do
     add_default_logger
 end
 
-deployment "unit_imu" do
-    task("imu_stim300", "imu_stim300::Task")
-    add_default_logger
-end
-
-deployment "unit_gps" do
-    task("gps", "gnss_trimble::Task")
-    add_default_logger
-end
-
-deployment "unit_lidar" do
-    task("velodyne_lidar", "velodyne_lidar::LaserScanner")
-    add_default_logger
-end
-
-deployment "unit_mesa" do
-    task("tofcamera_mesasr", "tofcamera_mesasr::Task")
-    add_default_logger
-end
-
-deployment "unit_gyro" do
+deployment "gyro" do
     task("dsp1760", "dsp1760::Task")
     add_default_logger
 end
 
-deployment "unit_temperature" do
+deployment "temperature" do
     task("temperature", "temperature::Task")
     add_default_logger
 end
@@ -331,6 +306,7 @@ deployment 'tmtchandling' do
     task("trigger_lidar", "camera_trigger::Task")
     task("trigger_tof", "camera_trigger::Task")
     task("trigger_navcam", "camera_trigger::Task")
+    task("trigger_hazcam", "camera_trigger::Task")
     task("trigger_loccam", "camera_trigger::Task")
     task("trigger_pancam", "camera_trigger::Task")
     task("trigger_pancam_360", "camera_trigger::Task")
