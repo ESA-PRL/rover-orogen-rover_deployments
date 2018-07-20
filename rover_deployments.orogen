@@ -105,6 +105,7 @@ end
 
 deployment 'stereo' do
     task("stereo_pancam", "stereo::Task")
+    task("stereo_pancam_360", "stereo::Task")
     task("stereo_bb2", "stereo::Task")
     task("stereo_bb3", "stereo::Task")
     add_default_logger
@@ -319,6 +320,7 @@ deployment 'dem_generation' do
     task("dem_generation_bb2", "dem_generation::Task")
     task("dem_generation_bb3", "dem_generation::Task")
     task("dem_generation_pancam", "dem_generation::Task")
+    task("dem_generation_pancam_360", "dem_generation::Task")
     task("dem_generation_panoramica", "dem_generation::Task")
     add_default_logger
 end
