@@ -33,6 +33,7 @@
   <depend package="drivers/orogen/controldev" />
   <depend package="drivers/orogen/ptu_directedperception" />
   <depend package="drivers/orogen/telemetry_telecommand" />
+  <depend package="drivers/orogen/autonav_interface" />
 	
   <!-- Rover Control -->
   <depend package="control/orogen/joint_dispatcher" />

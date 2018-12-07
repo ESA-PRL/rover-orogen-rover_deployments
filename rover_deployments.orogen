@@ -23,6 +23,7 @@ using_task_library 'ptu_directedperception'
 using_task_library 'dsp1760'
 using_task_library 'temperature'
 using_task_library 'telemetry_telecommand'
+using_task_library 'autonav_interface'
 
 # Control
 using_task_library 'ptu_control'
@@ -368,6 +369,7 @@ deployment "autonomy" do
    task("path_planner", "path_planning::Task")
    #task("ga_slam", "ga_slam::Task")
    task("traversability", "traversability::Task")
+   task("autonav_interface", "autonav_interface::Task")
    #task("traversability_loader", "traversability_loader::Task")
    #task("goal_set", "trajectory_helpers::GoalGenerator")
    #task("trajectory_refiner", "trajectory_helpers::TrajectoryRefiner")
