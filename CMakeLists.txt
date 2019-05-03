@@ -7,3 +7,4 @@ INCLUDE(rover_deploymentsBase)
 # FIND_PACKAGE(KDL)
 # FIND_PACKAGE(OCL)
 
+install(CODE "execute_process(COMMAND sudo setcap CAP_NET_RAW=ep ${CMAKE_INSTALL_PREFIX}/bin/control)")
