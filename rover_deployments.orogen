@@ -13,7 +13,6 @@ using_task_library 'tofcamera_mesasr'
 using_task_library 'velodyne_lidar'
 
 # Drivers
-using_task_library 'platform_driver'
 using_task_library 'joint_dispatcher'
 using_task_library 'locomotion_control'
 using_task_library 'wheelwalking_control'
@@ -66,23 +65,6 @@ using_task_library 'threed_odometry'
 using_task_library 'simulation_vrep'
 
 ######################################################### Deployement definition
-
-# Rover general deployements
-deployment 'control' do
-    task("platform_driver_hdpr", "platform_driver::Hdpr")
-    task("platform_driver_exoter", "platform_driver::Exoter")
-    task("platform_driver_marta", "platform_driver::Marta")
-    task("locomotion_control", "locomotion_control::Task")
-    task("read_joint_dispatcher", "joint_dispatcher::Task")
-    task("command_joint_dispatcher", "joint_dispatcher::Task")
-    task("motion_translator", "motion_translator::Task")
-    task("joystick", "controldev::JoystickTask")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("ptu_control", "ptu_control::Task")
-    task("wheel_walking_control", "wheelwalking_control::Task")
-    task("locomotion_switcher", "locomotion_switcher::Task")
-    add_default_logger
-end
 
 deployment 'fdir' do
     task("slippage_estimator", "slippage_estimator::Task")
@@ -155,6 +137,16 @@ deployment 'pancam_bb3' do
    add_default_logger
 end
 
+deployment 'navcam_bb3' do
+    task("camera_firewire_navcam", "camera_firewire::CameraTask")
+    task("camera_navcam", "camera_bb3::Task")
+    task("navcam_panorama", "pancam_panorama::Task")
+    task("navcam_360", "pancam_360::Task")
+    task("stereo_navcam", "stereo::Task")
+    task("dem_generation_navcam", "dem_generation::Task")
+   add_default_logger
+end
+
 deployment 'navcam' do
     task("camera_firewire_navcam", "camera_firewire::CameraTask")
     task("camera_navcam", "camera_bb2::Task")
@@ -202,24 +194,6 @@ deployment "shutter_controller" do
 end
 
 #################################################### Deployements for unit tests
-
-deployment "unit_following" do
-    task("platform_driver_hdpr", "platform_driver::Hdpr").periodic(0.08)
-    task("platform_driver_exoter", "platform_driver::Exoter").periodic(0.08)
-    task("locomotion_control", "locomotion_control::Task")
-    task("read_joint_dispatcher", "joint_dispatcher::Task")
-    task("command_joint_dispatcher", "joint_dispatcher::Task")
-    task("motion_translator", "motion_translator::Task")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("ptu_control", "ptu_control::Task")
-    task("joystick", "controldev::JoystickTask")
-    # Newly added tasks compared to "unit_control"
-    task("vicon", "vicon::Task").periodic(0.1)
-    task("waypoint_navigation", "waypoint_navigation::Task")
-    task("trajectoryGen", "waypoint_navigation::TrajectoryTest")
-    task("command_arbiter", "command_arbiter::Task")
-    add_default_logger
-end
 
 deployment "unit_visual_odometry" do
     task("viso2_with_imu","viso2_with_imu::Task")
@@ -330,17 +304,6 @@ deployment 'dem_generation' do
 end
 
 ######################################################## Deprecated deployements
-
-# Rover Odometry
-deployment "unit_odometry" do
-    task("imu_stim300", "imu_stim300::Task")
-    task("platform_driver_hdpr", "platform_driver::Hdpr")
-    task("platform_driver_exoter", "platform_driver::Exoter")
-    task("read_joint_dispatcher", "joint_dispatcher::Task")
-    task("threed_odometry", "threed_odometry::Task")
-    add_default_logger
-end
-
 
 # Ground Truth
 deployment "groundtruth" do

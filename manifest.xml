@@ -8,15 +8,6 @@
   <logo>http://</logo>
   <depend package="base/cmake" />
 
-  <!--
-   To add any dependencies use the depend tag
-  <depend package="dummy-dependency-0" />
-	...
-  <depend package="dummy-dependency-n-1" />
-  <depend package="dummy-dependency-n" />
-  -->
-
-  <!-- Rover Drivers -->
   <!-- <depend package="drivers/orogen/transformer" /> -->
   <depend package="drivers/orogen/imu_stim300" />
   <depend package="drivers/orogen/vicon" />
@@ -26,7 +17,6 @@
   <depend package="drivers/orogen/camera_bb2" />
   <depend package="drivers/orogen/camera_bb3" />
   <depend package="drivers/orogen/tofcamera_mesasr" />
-  <depend package="drivers/orogen/platform_driver" />
   <depend package="drivers/orogen/velodyne_lidar" />
   <depend package="drivers/orogen/temperature" />
   <depend package="drivers/orogen/dsp1760" />
@@ -35,7 +25,6 @@
   <depend package="drivers/orogen/telemetry_telecommand" />
   <depend package="drivers/orogen/autonav_interface" />
 	
-  <!-- Rover Control -->
   <depend package="control/orogen/joint_dispatcher" />
   <depend package="control/orogen/locomotion_control" />
   <depend package="control/orogen/pancam_panorama" />
@@ -50,7 +39,6 @@
   <depend package="control/orogen/locomotion_switcher" />   <!-- Wheel Walking Control -->
   <depend package="control/orogen/fdir" />
 
-  <!-- Rover Perception -->
   <depend package="perception/orogen/viso2" />
   <depend package="perception/orogen/viso2_with_imu" />
   <depend package="perception/orogen/viso2_evaluation" />
@@ -61,17 +49,14 @@
   <depend package="perception/orogen/cartographer" />
   <depend package="perception/orogen/traversability" />
 
-  <!-- Rover Planning -->
   <depend package="planning/orogen/path_planning" />
 	
-  <!-- Rover slam -->
   <!-- <depend package="rover/orogen/rover_odometry" /> -->
   <!-- <depend package="rover/orogen/localization_frontend" /> -->
-  <depend package="slam/orogen/threed_odometry" /> 
+  <depend package="slam/orogen/threed_odometry" />
   <depend package="slam/orogen/odometry" />
   <!-- <depend package="slam/orogen/ga_slam" /> -->
 
-  <!-- Rover simulation -->
   <depend package="simulation/orogen/simulation_vrep" />
 
   <!-- Compilation flags -->
