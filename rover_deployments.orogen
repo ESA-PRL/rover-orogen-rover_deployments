@@ -4,7 +4,6 @@ name "rover_deployments"
 
 # Sensors
 using_task_library 'imu_stim300'
-using_task_library 'inclinometer_solar2'
 using_task_library 'vicon'
 using_task_library 'gnss_trimble'
 using_task_library 'camera_bb2'
@@ -170,11 +169,6 @@ end
 
 deployment 'imu' do
     task("imu_stim300", "imu_stim300::Task")
-    add_default_logger
-end
-
-deployment 'inclinometer' do
-    task("inclinometer_solar2", "inclinometer_solar2::Task")
     add_default_logger
 end
 
