@@ -18,14 +18,12 @@ using_task_library 'locomotion_control'
 using_task_library 'wheelwalking_control'
 using_task_library 'locomotion_switcher'
 using_task_library 'controldev'
-using_task_library 'ptu_directedperception'
 using_task_library 'dsp1760'
 using_task_library 'temperature'
 using_task_library 'telemetry_telecommand'
 using_task_library 'autonav_interface'
 
 # Control
-using_task_library 'ptu_control'
 using_task_library 'motion_translator'
 using_task_library 'command_arbiter'
 using_task_library 'waypoint_navigation'
@@ -220,25 +218,6 @@ deployment "unit_pancam" do
     task("pancam_left", "camera_firewire::CameraTask")
     task("pancam_right", "camera_firewire::CameraTask")
     task("stereo_pancam", "stereo::Task")
-    add_default_logger
-end
-
-deployment "unit_ptu" do
-    task("pancam_left", "camera_firewire::CameraTask")
-    task("pancam_right", "camera_firewire::CameraTask")
-    task("pancam_panorama", "pancam_panorama::Task")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("ptu_control", "ptu_control::Task")
-    task("joystick", "controldev::JoystickTask")
-    add_default_logger
-end
-
-deployment "unit_360" do
-    task("pancam_left", "camera_firewire::CameraTask")
-    task("pancam_right", "camera_firewire::CameraTask")
-    task("pancam_360", "pancam_360::Task")
-    task("ptu_directedperception", "ptu_directedperception::Task")
-    task("ptu_control", "ptu_control::Task")
     add_default_logger
 end
 

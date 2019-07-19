@@ -21,7 +21,6 @@
   <depend package="drivers/orogen/temperature" />
   <depend package="drivers/orogen/dsp1760" />
   <depend package="drivers/orogen/controldev" />
-  <depend package="drivers/orogen/ptu_directedperception" />
   <depend package="drivers/orogen/telemetry_telecommand" />
   <depend package="drivers/orogen/autonav_interface" />
 	
@@ -33,7 +32,6 @@
   <depend package="control/orogen/gps_heading" />
   <depend package="control/orogen/command_arbiter" />
   <depend package="control/orogen/motion_translator" />
-  <depend package="control/orogen/ptu_control" />
   <depend package="control/orogen/waypoint_navigation" />
   <depend package="control/orogen/wheelwalking_control" />   <!-- Wheel Walking Control -->
   <depend package="control/orogen/locomotion_switcher" />   <!-- Wheel Walking Control -->
