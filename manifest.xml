@@ -48,6 +48,7 @@
   <depend package="perception/orogen/traversability" />
 
   <depend package="planning/orogen/path_planning" />
+  <depend package="planning/orogen/cost_updating" />
 	
   <!-- <depend package="rover/orogen/rover_odometry" /> -->
   <!-- <depend package="rover/orogen/localization_frontend" /> -->
