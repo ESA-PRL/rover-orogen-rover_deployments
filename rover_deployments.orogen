@@ -45,6 +45,7 @@ using_task_library 'camera_trigger'
 using_task_library 'cartographer'
 using_task_library 'traversability'
 using_task_library 'path_planning'
+using_task_library 'cost_updating'
 #using_task_library 'ga_slam'
 
 # Other
@@ -310,6 +311,7 @@ end
 deployment "autonomy" do
    task("cartographer","cartographer::Task")
    task("path_planner", "path_planning::Task")
+   task("cost_updating", "cost_updating::Task")
    #task("ga_slam", "ga_slam::Task")
    task("traversability", "traversability::Task")
    task("autonav_interface", "autonav_interface::Task")
