@@ -22,7 +22,7 @@
   <depend package="drivers/orogen/dsp1760" />
   <depend package="drivers/orogen/controldev" />
   <depend package="drivers/orogen/telemetry_telecommand" />
-  <depend package="drivers/orogen/autonav_interface" />
+  <depend package="drivers/orogen/autonav_interface" optional="1" />
 	
   <depend package="control/orogen/joint_dispatcher" />
   <depend package="control/orogen/locomotion_control" />

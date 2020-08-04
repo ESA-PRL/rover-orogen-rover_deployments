@@ -21,7 +21,7 @@ using_task_library 'controldev'
 using_task_library 'dsp1760'
 using_task_library 'temperature'
 using_task_library 'telemetry_telecommand'
-using_task_library 'autonav_interface'
+#using_task_library 'autonav_interface' # not public
 
 # Control
 using_task_library 'motion_translator'
@@ -314,7 +314,7 @@ deployment "autonomy" do
    task("cost_updating", "cost_updating::Task")
    #task("ga_slam", "ga_slam::Task")
    task("traversability", "traversability::Task")
-   task("autonav_interface", "autonav_interface::Task")
+   #task("autonav_interface", "autonav_interface::Task") # not public
    #task("traversability_loader", "traversability_loader::Task")
    #task("goal_set", "trajectory_helpers::GoalGenerator")
    #task("trajectory_refiner", "trajectory_helpers::TrajectoryRefiner")
