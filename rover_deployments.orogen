@@ -13,11 +13,6 @@ using_task_library 'tofcamera_mesasr'
 using_task_library 'velodyne_lidar'
 
 # Drivers
-using_task_library 'joint_dispatcher'
-using_task_library 'locomotion_control'
-using_task_library 'wheelwalking_control'
-using_task_library 'locomotion_switcher'
-using_task_library 'controldev'
 using_task_library 'dsp1760'
 using_task_library 'temperature'
 using_task_library 'telemetry_telecommand'
