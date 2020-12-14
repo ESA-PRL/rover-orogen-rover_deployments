@@ -46,6 +46,7 @@
   <depend package="perception/orogen/dem_generation" />
   <depend package="perception/orogen/cartographer" />
   <depend package="perception/orogen/traversability" />
+  <depend package="perception/orogen/odometry_fusion" />
 
   <depend package="planning/orogen/path_planning" />
   <depend package="planning/orogen/cost_updating" />

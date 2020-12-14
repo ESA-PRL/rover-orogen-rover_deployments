@@ -57,6 +57,7 @@ using_task_library 'threed_odometry'
 #using_task_library 'traversability_loader'
 #using_task_library 'trajectory_helpers'
 using_task_library 'simulation_vrep'
+using_task_library 'odometry_fusion'
 
 ######################################################### Deployement definition
 
@@ -188,6 +189,14 @@ deployment "shutter_controller" do
 end
 
 #################################################### Deployements for unit tests
+
+deployment "unit_odometry_fusion" do
+    task("visual_evaluation", "viso2_evaluation::Task")
+    task("inertial_evaluation", "viso2_evaluation::Task")
+    task("fusion_evaluation", "viso2_evaluation::Task")
+    task("odometry_fusion", "odometry_fusion::Task")
+    add_default_logger
+end
 
 deployment "unit_visual_odometry" do
     task("viso2_with_imu","viso2_with_imu::Task")
