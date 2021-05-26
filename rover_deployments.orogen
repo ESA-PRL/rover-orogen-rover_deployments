@@ -184,6 +184,7 @@ end
 deployment "shutter_controller" do
     task("shutter_controller_pancam", "shutter_controller::Task")
     task("shutter_controller_bb2", "shutter_controller::Task")
+    task("shutter_controller_navcam", "shutter_controller::Task")
     task("shutter_controller_bb3", "shutter_controller::Task")
     add_default_logger
 end
